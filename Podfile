@@ -7,7 +7,8 @@ target 'Flixter' do
 
   # Pods for Flixter
   pod 'AFNetworking'
-  
+  pod 'SVProgressHUD'
+  pod 'MBProgressHUD', '~> 1.2.0'
 
   target 'FlixterTests' do
     inherit! :search_paths

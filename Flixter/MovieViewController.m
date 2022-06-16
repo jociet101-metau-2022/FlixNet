@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSArray *movies;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @end
 
@@ -26,6 +27,12 @@
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+        
+    UIActivityIndicatorView* ai = [[UIActivityIndicatorView alloc] init];
+    self.activityIndicator = ai;
+    self.activityIndicator.center = self.tableView.center;
+    [self.activityIndicator startAnimating];
+    [self.view addSubview:self.activityIndicator];
     
     [self fetchData];
     
@@ -36,6 +43,7 @@
 }
 
 - (void)fetchData {
+    
     NSURL *url = [NSURL URLWithString:@"https://api.themoviedb.org/3/movie/now_playing?api_key=afce5775823482bce9ebe26ae2a18553"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
@@ -44,14 +52,17 @@
                NSLog(@"%@", [error localizedDescription]);
            }
            else {
+               
+               [self.activityIndicator stopAnimating];
+               
                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
                
-                   NSLog(@"%@", dataDictionary);
+//                   NSLog(@"%@", dataDictionary);
                
                // Get array of movies and store into property
                self.movies = dataDictionary[@"results"];
                
-               // TODO: Reload your table view data
+               // reload your table view data
                [self.tableView reloadData];
            }
         [self.refreshControl endRefreshing];
@@ -94,9 +105,6 @@
     NSDictionary *data = self.movies[indexPath.row];
     DetailsViewController *detailVC = [segue destinationViewController];
     detailVC.incomingData = data;
-    
-    NSLog(@"%@", data);
 }
-
 
 @end

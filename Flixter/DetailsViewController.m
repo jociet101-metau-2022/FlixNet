@@ -14,7 +14,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImage;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
-@property (weak, nonatomic) IBOutlet UILabel *ratingLabel;
 @property (weak, nonatomic) IBOutlet UILabel *synopsisLabel;
 
 @end
@@ -25,11 +24,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    NSLog(@"%@", self.incomingData);
+//    NSLog(@"%@", self.incomingData);
     
     self.titleLabel.text = self.incomingData[@"original_title"];
     self.dateLabel.text = self.incomingData[@"release_date"];
-//    self.ratingLabel.text = NSLog(self.incomingData[@"vote_average"]);
     self.synopsisLabel.text = self.incomingData[@"overview"];
     
     NSString *baseURL = @"https://image.tmdb.org/t/p/w500";
@@ -46,8 +44,6 @@
     [self.posterImage setImageWithURL:posterURL];
     [self.backgroundImage setImageWithURL:backdropURL];
     
-    
-//    NSLog(self.titleLabel.text);
 }
 
 /*
