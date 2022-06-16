@@ -22,14 +22,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
-//    NSLog(@"%@", self.incomingData);
-    
-    self.titleLabel.text = self.incomingData[@"original_title"];
+    // Set labels to corresponding text
+    self.titleLabel.text = self.incomingData[@"title"];
     self.dateLabel.text = self.incomingData[@"release_date"];
     self.synopsisLabel.text = self.incomingData[@"overview"];
     
+    // Configure the image paths for backdrop and poster
     NSString *baseURL = @"https://image.tmdb.org/t/p/w500";
     
     NSString *posterTailURL = self.incomingData[@"poster_path"];
@@ -40,10 +39,10 @@
 
     NSURL *posterURL = [NSURL URLWithString:posterPath];
     NSURL *backdropURL = [NSURL URLWithString:backdropPath];
-
+    
+    // Assign the images to the image view object
     [self.posterImage setImageWithURL:posterURL];
     [self.backgroundImage setImageWithURL:backdropURL];
-    
 }
 
 /*
