@@ -50,6 +50,7 @@
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
            if (error != nil) {
                NSLog(@"%@", [error localizedDescription]);
+               [self handleAlert];
            }
            else {
                
@@ -65,10 +66,21 @@
                // reload your table view data
                [self.tableView reloadData];
            }
+        
         [self.refreshControl endRefreshing];
             
        }];
     [task resume];
+}
+
+- (void)handleAlert {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Unable to Display Movies" message:@"Your network connection seems to be offline. Please pull to refresh to try again." preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Try Again" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+        NSLog(@"Try Again");
+    }];
+    
+    [alertController addAction:okAction];
+    [self presentViewController:alertController animated: YES completion: nil];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
