@@ -7,6 +7,7 @@
 
 #import "MovieViewController.h"
 #import "MovieTableViewCell.h"
+#import "DetailsViewController.h"
 #import "UIImageView+AFNetworking.h"
 
 @interface MovieViewController () <UITableViewDataSource, UITableViewDelegate>
@@ -45,7 +46,7 @@
            else {
                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
                
-    //               NSLog(@"%@", dataDictionary);
+                   NSLog(@"%@", dataDictionary);
                
                // Get array of movies and store into property
                self.movies = dataDictionary[@"results"];
@@ -85,14 +86,17 @@
     return 1;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    
+    MovieTableViewCell *cell = sender;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    
+    NSDictionary *data = self.movies[indexPath.row];
+    DetailsViewController *detailVC = [segue destinationViewController];
+    detailVC.incomingData = data;
+    
+    NSLog(@"%@", data);
 }
-*/
+
 
 @end
