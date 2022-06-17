@@ -10,12 +10,14 @@
 #import "DetailsViewController.h"
 #import "UIImageView+AFNetworking.h"
 
-@interface MovieViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface MovieViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
 @property (nonatomic, strong) NSArray *movies;
+@property (nonatomic, strong) NSArray *filteredData;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 
 @end
 
@@ -27,6 +29,7 @@
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.searchBar.delegate = self;
         
     UIActivityIndicatorView* ai = [[UIActivityIndicatorView alloc] init];
     self.activityIndicator = ai;
@@ -50,7 +53,8 @@
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
            if (error != nil) {
                NSLog(@"%@", [error localizedDescription]);
-               [self handleAlert];
+               NSString* errorName = [NSString stringWithFormat:@"%@", [error localizedDescription]];
+               [self handleAlert:errorName];
            }
            else {
                
@@ -73,10 +77,12 @@
     [task resume];
 }
 
-- (void)handleAlert {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Unable to Display Movies" message:@"Your network connection seems to be offline. Please pull to refresh to try again." preferredStyle:UIAlertControllerStyleAlert];
+- (void)handleAlert:(NSString *)errorName {
+    [self.activityIndicator stopAnimating];
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Unable to Display Movies" message:errorName preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Try Again" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-        NSLog(@"Try Again");
+        [self viewDidLoad];
     }];
     
     [alertController addAction:okAction];
@@ -108,6 +114,26 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
+
+//- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+//
+//    if (searchText.length != 0) {
+//
+//        NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(NSString *evaluatedObject, NSDictionary *bindings) {
+//            return [evaluatedObject containsString:searchText];
+//        }];
+//        self.filteredData = [self.data filteredArrayUsingPredicate:predicate];
+//
+//        NSLog(@"%@", self.filteredData);
+//
+//    }
+//    else {
+//        self.filteredData = self.data;
+//    }
+//
+//    [self.tableView reloadData];
+//
+//}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     

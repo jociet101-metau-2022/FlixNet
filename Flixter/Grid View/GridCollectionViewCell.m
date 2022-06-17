@@ -9,6 +9,4 @@
 
 @implementation GridCollectionViewCell
 
-
-
 @end

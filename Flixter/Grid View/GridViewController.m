@@ -18,6 +18,8 @@
 
 @implementation GridViewController
 
+int selectedRow = 0;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -26,6 +28,16 @@
     self.collectionView.delegate = self;
     
     [self fetchData];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    NSUserDefaults *values = [NSUserDefaults standardUserDefaults];
+    selectedRow = [values integerForKey:@"which_row"];
+    
+    NSLog(@"RETRIEVING: %ld is selected", selectedRow);
+    
 }
 
 - (void)fetchData {
@@ -38,10 +50,7 @@
                NSLog(@"%@", [error localizedDescription]);
            }
            else {
-               
                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-               
-//                   NSLog(@"%@", dataDictionary);
                
                // Get array of movies and store into property
                self.movies = dataDictionary[@"results"];
@@ -66,6 +75,27 @@
         
     [cell.posterImage setImageWithURL:posterURL];
     
+    CGRect viewFrame = cell.frame;
+    CGRect imageFrame = cell.posterImage.frame;
+    
+    NSLog(self.movies[indexPath.row][@"title"]);
+    NSLog(@"selected row = %d", selectedRow);
+        
+    switch(selectedRow) {
+        case 0:
+            viewFrame.size = CGSizeMake(190, 260);
+            imageFrame.size = CGSizeMake(190, 260);
+            break;
+        case 1:
+            viewFrame.size = CGSizeMake(120, 160);
+            imageFrame.size = CGSizeMake(120, 160);
+            break;
+        case 2:
+            viewFrame.size = CGSizeMake(90, 135);
+            imageFrame.size = CGSizeMake(90, 135);
+            break;
+    }
+    
     return cell;
 }
 
@@ -73,6 +103,11 @@
     
     return self.movies.count;
 }
+
+- (IBAction)pressSettings:(id)sender {
+    [self performSegueWithIdentifier:@"SettingsSegue" sender:self];
+}
+
 
 //- (CGFloat)collectionView:
 

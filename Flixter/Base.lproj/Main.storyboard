@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Movie Posters-->
+        <!--Gallery-->
         <scene sceneID="efQ-w8-XHX">
             <objects>
                 <viewController id="3i9-wi-rr8" customClass="GridViewController" sceneMemberID="viewController">
@@ -18,32 +18,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dY9-uw-Wq8">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="11" y="0.0" width="393" height="896"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="o8Y-XT-j9y">
-                                    <size key="itemSize" width="138" height="195"/>
+                                    <size key="itemSize" width="190" height="260"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GridCell" id="WeY-MR-o2R" customClass="GridCollectionViewCell">
-                                        <rect key="frame" x="0.0" y="0.0" width="138" height="195"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="190" height="260"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="cHO-uB-OAQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="138" height="195"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="190" height="260"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="arG-tg-uPW">
-                                                    <rect key="frame" x="0.0" y="0.0" width="138" height="197"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="arG-tg-uPW">
+                                                    <rect key="frame" x="0.0" y="0.0" width="190" height="260"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="138" height="195"/>
+                                        <size key="customSize" width="190" height="260"/>
                                         <connections>
-                                            <outlet property="posterImage" destination="arG-tg-uPW" id="xEa-er-Ls9"/>
+                                            <outlet property="posterImage" destination="arG-tg-uPW" id="ZGb-tA-k5o"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -52,7 +52,14 @@
                         <viewLayoutGuide key="safeArea" id="rlq-x3-DyP"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Movie Posters" id="raG-Ov-T30"/>
+                    <navigationItem key="navigationItem" title="Gallery" id="raG-Ov-T30">
+                        <barButtonItem key="rightBarButtonItem" image="gearshape" catalog="system" id="gSF-Sn-Vu5">
+                            <connections>
+                                <action selector="pressSettings:" destination="3i9-wi-rr8" id="UL0-BE-3fO"/>
+                                <segue destination="Lgw-d2-E6u" kind="show" identifier="SettingsSegue" id="LnM-5a-LSK"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="dY9-uw-Wq8" id="1Nv-a3-dTT"/>
                     </connections>
@@ -61,7 +68,39 @@
             </objects>
             <point key="canvasLocation" x="4142.0289855072469" y="806.91964285714278"/>
         </scene>
-        <!--Browse Movies-->
+        <!--Settings-->
+        <scene sceneID="h7c-Wh-Miy">
+            <objects>
+                <viewController id="Lgw-d2-E6u" customClass="SettingsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Car-Ya-IFB">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DZ4-Hj-Ec8">
+                                <rect key="frame" x="91" y="160" width="233" height="87"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Number of Posters Per Row" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yxA-Yh-X5K">
+                                <rect key="frame" x="91" y="128" width="232" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="jPA-Qo-S6c"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Settings" id="OOh-nH-nXr"/>
+                    <connections>
+                        <outlet property="numberPicker" destination="DZ4-Hj-Ec8" id="h4S-kz-MaH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nBI-EW-9Kc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5185.507246376812" y="806.91964285714278"/>
+        </scene>
+        <!--Browse-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MovieViewController" sceneMemberID="viewController">
@@ -70,7 +109,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="205" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="MPK-DB-xi6">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="132" width="414" height="764"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
@@ -113,18 +152,24 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search Movies" translatesAutoresizingMaskIntoConstraints="NO" id="41g-gW-3tA">
+                                <rect key="frame" x="0.0" y="88" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Browse Movies" id="pbr-Ni-QUk"/>
+                    <navigationItem key="navigationItem" title="Browse" id="pbr-Ni-QUk"/>
                     <connections>
+                        <outlet property="searchBar" destination="41g-gW-3tA" id="mA2-Db-c82"/>
                         <outlet property="tableView" destination="MPK-DB-xi6" id="DOC-Km-1tG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4144.927536231884" y="-25.446428571428569"/>
+            <point key="canvasLocation" x="4143.4782608695659" y="-25.446428571428569"/>
         </scene>
         <!--Details View Controller-->
         <scene sceneID="75O-ew-FBq">
@@ -170,7 +215,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kOH-hh-Ivz">
                                         <rect key="frame" x="22" y="363" width="371" height="354"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <mutableString key="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. </mutableString>
+                                        <string key="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. </string>
                                         <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -197,11 +242,11 @@
             </objects>
             <point key="canvasLocation" x="5142.0289855072469" y="-25.446428571428569"/>
         </scene>
-        <!--Browse Movies-->
+        <!--Now Playing-->
         <scene sceneID="q99-tg-dAt">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eh2-Qu-2Rc" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Browse Movies" image="now_playing_tabbar_item" selectedImage="now_playing_tabbar_item" id="KTL-2A-j1n"/>
+                    <tabBarItem key="tabBarItem" title="Now Playing" image="now_playing_tabbar_item" selectedImage="now_playing_tabbar_item" id="KTL-2A-j1n"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="VB8-gF-fwJ">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -216,11 +261,11 @@
             </objects>
             <point key="canvasLocation" x="3234.7826086956525" y="-25.446428571428569"/>
         </scene>
-        <!--Movie Posters-->
+        <!--Gallery-->
         <scene sceneID="Rf5-Gg-4cS">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZFI-eX-Sup" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Movie Posters" image="projector_tabbar_item" selectedImage="projector_tabbar_item" id="5se-Pz-4s7"/>
+                    <tabBarItem key="tabBarItem" title="Gallery" image="projector_tabbar_item" selectedImage="projector_tabbar_item" id="5se-Pz-4s7"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="n4q-u1-1jY">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -257,6 +302,7 @@
     </scenes>
     <color key="tintColor" name="AccentColor"/>
     <resources>
+        <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="now_playing_tabbar_item" width="21" height="21"/>
         <image name="projector_tabbar_item" width="21" height="25"/>
         <namedColor name="AccentColor">
