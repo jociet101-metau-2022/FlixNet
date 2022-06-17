@@ -1,6 +1,6 @@
-# Project 1 - *Flixter*
+# Project 1 - *FlixNet*
 
-**Name of your app** is a movies app using the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
+**FlixNet** is a movies app using the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
 Time spent: **18** hours spent in total
 
@@ -43,7 +43,7 @@ Here's a walkthrough of implemented user stories:
 
 https://user-images.githubusercontent.com/73032138/174396928-ba85a8e0-2c58-41a6-92d6-6b0a1c7e3af5.mov
 
-Here's a walkthrough of what happens when the network connection is poor:
+Here's a walkthrough of what happens when there is a network error:
 
 https://user-images.githubusercontent.com/73032138/174396165-aee87697-9611-4fb3-8c2b-cf90089118f6.mov
 
