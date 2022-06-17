@@ -31,13 +31,13 @@
       "size" : "40x40"
     },
     {
-      "filename" : "appicon@2x.png",
+      "filename" : "f2-1.jpg",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "60x60"
     },
     {
-      "filename" : "appicon@3x.png",
+      "filename" : "f2.jpg",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "60x60"
@@ -88,6 +88,7 @@
       "size" : "83.5x83.5"
     },
     {
+      "filename" : "f2-2.jpg",
       "idiom" : "ios-marketing",
       "scale" : "1x",
       "size" : "1024x1024"
