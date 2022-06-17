@@ -23,6 +23,8 @@
 
 @implementation MovieViewController
 
+NSArray *allMovies;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -62,11 +64,10 @@
                
                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
                
-//                   NSLog(@"%@", dataDictionary);
-               
                // Get array of movies and store into property
+               self.filteredData = dataDictionary[@"results"];
                self.movies = dataDictionary[@"results"];
-               
+                              
                // reload your table view data
                [self.tableView reloadData];
            }
@@ -93,11 +94,11 @@
     
     MovieTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell"];
      
-    cell.titleLabel.text = self.movies[indexPath.row][@"title"];
-    cell.synopsisLabel.text = self.movies[indexPath.row][@"overview"];
+    cell.titleLabel.text = self.filteredData[indexPath.row][@"title"];
+    cell.synopsisLabel.text = self.filteredData[indexPath.row][@"overview"];
     
     NSString *baseURL = @"https://image.tmdb.org/t/p/w500";
-    NSString *tailURL = self.movies[indexPath.row][@"poster_path"];
+    NSString *tailURL = self.filteredData[indexPath.row][@"poster_path"];
     
     NSString *imagePath = [baseURL stringByAppendingString:tailURL];
     NSURL *posterURL = [NSURL URLWithString:imagePath];
@@ -108,39 +109,42 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.movies.count;
+    return self.filteredData.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
-//- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-//
-//    if (searchText.length != 0) {
-//
-//        NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(NSString *evaluatedObject, NSDictionary *bindings) {
-//            return [evaluatedObject containsString:searchText];
-//        }];
-//        self.filteredData = [self.data filteredArrayUsingPredicate:predicate];
-//
-//        NSLog(@"%@", self.filteredData);
-//
-//    }
-//    else {
-//        self.filteredData = self.data;
-//    }
-//
-//    [self.tableView reloadData];
-//
-//}
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    
+    if (searchText.length != 0) {
+
+        NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(NSDictionary *evaluatedObject, NSDictionary *bindings) {
+            
+            return [evaluatedObject[@"title"] containsString:searchText];
+        }];
+        
+        self.filteredData = [self.movies filteredArrayUsingPredicate:predicate];
+        
+        for (int i = 0; i < self.filteredData.count; i++) {
+            NSLog(@"%@", self.filteredData[i][@"title"]);
+        }
+    }
+    else {
+        self.filteredData = self.movies;
+    }
+
+    [self.tableView reloadData];
+
+}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     MovieTableViewCell *cell = sender;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     
-    NSDictionary *data = self.movies[indexPath.row];
+    NSDictionary *data = self.filteredData[indexPath.row];
     DetailsViewController *detailVC = [segue destinationViewController];
     detailVC.incomingData = data;
 }

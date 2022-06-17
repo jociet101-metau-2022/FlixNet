@@ -50,7 +50,7 @@
       didSelectRow:(NSInteger)row
        inComponent:(NSInteger)component {
     
-    NSLog(@"SAVING: %ld is selected", row);
+//    NSLog(@"SAVING: %ld is selected", row);
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setInteger:row forKey:@"which_row"];

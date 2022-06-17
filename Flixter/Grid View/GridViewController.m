@@ -36,7 +36,7 @@ int selectedRow = 0;
     NSUserDefaults *values = [NSUserDefaults standardUserDefaults];
     selectedRow = [values integerForKey:@"which_row"];
     
-    NSLog(@"RETRIEVING: %ld is selected", selectedRow);
+//    NSLog(@"RETRIEVING: %ld is selected", selectedRow);
     
 }
 
@@ -78,8 +78,8 @@ int selectedRow = 0;
     CGRect viewFrame = cell.frame;
     CGRect imageFrame = cell.posterImage.frame;
     
-    NSLog(self.movies[indexPath.row][@"title"]);
-    NSLog(@"selected row = %d", selectedRow);
+//    NSLog(self.movies[indexPath.row][@"title"]);
+//    NSLog(@"selected row = %d", selectedRow);
         
     switch(selectedRow) {
         case 0:

@@ -52,14 +52,7 @@
                         <viewLayoutGuide key="safeArea" id="rlq-x3-DyP"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Gallery" id="raG-Ov-T30">
-                        <barButtonItem key="rightBarButtonItem" image="gearshape" catalog="system" id="gSF-Sn-Vu5">
-                            <connections>
-                                <action selector="pressSettings:" destination="3i9-wi-rr8" id="UL0-BE-3fO"/>
-                                <segue destination="Lgw-d2-E6u" kind="show" identifier="SettingsSegue" id="LnM-5a-LSK"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Gallery" id="raG-Ov-T30"/>
                     <connections>
                         <outlet property="collectionView" destination="dY9-uw-Wq8" id="1Nv-a3-dTT"/>
                     </connections>
@@ -302,7 +295,6 @@
     </scenes>
     <color key="tintColor" name="AccentColor"/>
     <resources>
-        <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="now_playing_tabbar_item" width="21" height="21"/>
         <image name="projector_tabbar_item" width="21" height="25"/>
         <namedColor name="AccentColor">
