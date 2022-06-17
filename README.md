@@ -34,7 +34,7 @@ The following **additional** features are implemented:
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1. I would figure out how to have a size adapting collection view, i.e., adjusting the number of cells per row.
+1. I would like to figure out how to have a size adapting collection view, i.e., adjusting the number of cells per row.
 2. I would also like to figure out how to add a feature where the user can favorite a movie and it gets added to a different tab in the app. To do this, I assume we need to use a dynamic storage source to keep track of the users' favorites and adapt as they change it.
 
 ## Video Walkthrough
