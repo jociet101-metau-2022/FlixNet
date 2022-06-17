@@ -41,9 +41,12 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+https://user-images.githubusercontent.com/73032138/174396928-ba85a8e0-2c58-41a6-92d6-6b0a1c7e3af5.mov
 
-GIF created with [Kap](https://getkap.co/).
+Here's a walkthrough of what happens when the network connection is poor:
+
+https://user-images.githubusercontent.com/73032138/174396165-aee87697-9611-4fb3-8c2b-cf90089118f6.mov
+
 
 ## Credits
 
