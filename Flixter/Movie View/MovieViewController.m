@@ -139,6 +139,15 @@ NSArray *allMovies;
 
 }
 
+- (IBAction)onTap:(id)sender {
+    [self.view endEditing:true];
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [searchBar resignFirstResponder];
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     MovieTableViewCell *cell = sender;

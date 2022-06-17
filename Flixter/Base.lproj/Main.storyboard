@@ -153,6 +153,10 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="eU6-mV-OmT" appends="YES" id="DvG-X7-bI3"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Browse" id="pbr-Ni-QUk"/>
                     <connections>
@@ -161,6 +165,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="eU6-mV-OmT">
+                    <connections>
+                        <action selector="onTap:" destination="BYZ-38-t0r" id="1B7-QG-jUo"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="4143.4782608695659" y="-25.446428571428569"/>
         </scene>
