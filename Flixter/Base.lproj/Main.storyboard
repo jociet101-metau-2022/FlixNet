@@ -71,7 +71,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CjO-pt-lxs">
-                                <rect key="frame" x="0.0" y="232" width="414" height="513"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
@@ -79,20 +79,13 @@
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ht2-h3-o1x">
-                                <rect key="frame" x="20" y="95" width="374" height="129"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="33"/>
-                                <color key="textColor" systemColor="systemCyanColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="mzO-TC-8Oy"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="3d2-kt-ofF"/>
                     <connections>
-                        <outlet property="titleLabel" destination="ht2-h3-o1x" id="UzX-VE-jFP"/>
+                        <outlet property="trailerNavBar" destination="3d2-kt-ofF" id="f0v-9O-gkM"/>
                         <outlet property="trailerView" destination="CjO-pt-lxs" id="9CT-79-ehW"/>
                     </connections>
                 </viewController>
@@ -262,11 +255,11 @@
             </objects>
             <point key="canvasLocation" x="3235" y="-167"/>
         </scene>
-        <!--Gallery-->
+        <!--Trailers-->
         <scene sceneID="Rf5-Gg-4cS">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZFI-eX-Sup" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Gallery" image="projector_tabbar_item" selectedImage="projector_tabbar_item" id="5se-Pz-4s7"/>
+                    <tabBarItem key="tabBarItem" title="Trailers" image="projector_tabbar_item" selectedImage="projector_tabbar_item" id="5se-Pz-4s7"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="n4q-u1-1jY">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>

@@ -11,9 +11,9 @@
 
 @interface TrailerViewController ()
 
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet WKWebView *trailerView;
 @property (nonatomic, strong) NSArray *trailerInfo;
+@property (weak, nonatomic) IBOutlet UINavigationItem *trailerNavBar;
 
 @end
 
@@ -21,9 +21,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
-    self.titleLabel.text = self.incomingData[@"title"];
+    self.trailerNavBar.title = self.incomingData[@"title"];
     
     [self fetchData];
 }
@@ -31,7 +30,6 @@
 - (void)fetchData {
     
     NSString* urlID = self.incomingData[@"id"];
-    NSLog(@"ididididi = %@", urlID);
     
     NSString* rawURL = [NSString stringWithFormat:@"https://api.themoviedb.org/3/movie/%@/videos?api_key=afce5775823482bce9ebe26ae2a18553&language=en-US", urlID];
     NSURL *url = [NSURL URLWithString:rawURL];

@@ -121,15 +121,10 @@ NSArray *allMovies;
     if (searchText.length != 0) {
 
         NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(NSDictionary *evaluatedObject, NSDictionary *bindings) {
-            
             return [evaluatedObject[@"title"] containsString:searchText];
         }];
         
         self.filteredData = [self.movies filteredArrayUsingPredicate:predicate];
-        
-        for (int i = 0; i < self.filteredData.count; i++) {
-            NSLog(@"%@", self.filteredData[i][@"title"]);
-        }
     }
     else {
         self.filteredData = self.movies;

@@ -31,16 +31,6 @@ int selectedRow = 0;
     [self fetchData];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    NSUserDefaults *values = [NSUserDefaults standardUserDefaults];
-    selectedRow = [values integerForKey:@"which_row"];
-    
-//    NSLog(@"RETRIEVING: %ld is selected", selectedRow);
-    
-}
-
 - (void)fetchData {
     
     NSURL *url = [NSURL URLWithString:@"https://api.themoviedb.org/3/movie/now_playing?api_key=afce5775823482bce9ebe26ae2a18553"];
@@ -55,8 +45,6 @@ int selectedRow = 0;
                
                // Get array of movies and store into property
                self.movies = dataDictionary[@"results"];
-               
-               NSLog(@"%@", self.movies);
                
                // reload your table view data
                [self.collectionView reloadData];
