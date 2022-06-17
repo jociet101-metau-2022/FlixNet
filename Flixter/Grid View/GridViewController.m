@@ -111,14 +111,14 @@ int selectedRow = 0;
 
 //- (CGFloat)collectionView:
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    
+    GridCollectionViewCell *cell = sender;
+    NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
+    
+    NSDictionary *data = self.movies[indexPath.row];
+    GridCollectionViewCell *gridVC = [segue destinationViewController];
+    gridVC.incomingData = data;
 }
-*/
 
 @end

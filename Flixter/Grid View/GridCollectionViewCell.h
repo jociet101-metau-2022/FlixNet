@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface GridCollectionViewCell : UICollectionViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *posterImage;
+@property (nonatomic, strong) NSDictionary *incomingData;
 
 @end
 
