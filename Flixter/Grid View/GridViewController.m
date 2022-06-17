@@ -7,6 +7,7 @@
 
 #import "GridViewController.h"
 #import "GridCollectionViewCell.h"
+#import "TrailerViewController.h"
 #import "UIImageView+AFNetworking.h"
 
 @interface GridViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
@@ -55,6 +56,8 @@ int selectedRow = 0;
                // Get array of movies and store into property
                self.movies = dataDictionary[@"results"];
                
+               NSLog(@"%@", self.movies);
+               
                // reload your table view data
                [self.collectionView reloadData];
            }
@@ -75,27 +78,6 @@ int selectedRow = 0;
         
     [cell.posterImage setImageWithURL:posterURL];
     
-    CGRect viewFrame = cell.frame;
-    CGRect imageFrame = cell.posterImage.frame;
-    
-//    NSLog(self.movies[indexPath.row][@"title"]);
-//    NSLog(@"selected row = %d", selectedRow);
-        
-    switch(selectedRow) {
-        case 0:
-            viewFrame.size = CGSizeMake(190, 260);
-            imageFrame.size = CGSizeMake(190, 260);
-            break;
-        case 1:
-            viewFrame.size = CGSizeMake(120, 160);
-            imageFrame.size = CGSizeMake(120, 160);
-            break;
-        case 2:
-            viewFrame.size = CGSizeMake(90, 135);
-            imageFrame.size = CGSizeMake(90, 135);
-            break;
-    }
-    
     return cell;
 }
 
@@ -104,20 +86,13 @@ int selectedRow = 0;
     return self.movies.count;
 }
 
-- (IBAction)pressSettings:(id)sender {
-    [self performSegueWithIdentifier:@"SettingsSegue" sender:self];
-}
-
-
-//- (CGFloat)collectionView:
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
+
     GridCollectionViewCell *cell = sender;
     NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
-    
+
     NSDictionary *data = self.movies[indexPath.row];
-    GridCollectionViewCell *gridVC = [segue destinationViewController];
+    TrailerViewController *gridVC = [segue destinationViewController];
     gridVC.incomingData = data;
 }
 
