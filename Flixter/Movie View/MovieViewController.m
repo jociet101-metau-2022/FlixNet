@@ -100,13 +100,7 @@ NSArray *allMovies;
     
     MovieTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell"];
     
-    Movie* thisMovie = self.filteredData[indexPath.row];
-     
-    cell.titleLabel.text = thisMovie.title;
-    cell.synopsisLabel.text = thisMovie.overview;
-    
-    NSURL *posterURL = thisMovie.posterUrl;
-    [cell.posterImage setImageWithURL:posterURL];
+    cell.movie = self.filteredData[indexPath.row];
     
     return cell;
 }
