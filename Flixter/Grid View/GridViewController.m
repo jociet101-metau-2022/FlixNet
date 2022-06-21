@@ -70,7 +70,6 @@ int selectedRow = 0;
 }
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    
     return self.movies.count;
 }
 

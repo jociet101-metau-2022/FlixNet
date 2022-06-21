@@ -32,6 +32,9 @@ NSArray *allMovies;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.searchBar.delegate = self;
+    
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 100;
         
     UIActivityIndicatorView* ai = [[UIActivityIndicatorView alloc] init];
     self.activityIndicator = ai;
