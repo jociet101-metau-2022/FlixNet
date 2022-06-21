@@ -10,6 +10,7 @@
 #import "DetailsViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "Movie.h"
+#import "MovieApiManager.h"
 
 @interface MovieViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
@@ -53,35 +54,24 @@ NSArray *allMovies;
 
 - (void)fetchData {
     
-    NSURL *url = [NSURL URLWithString:@"https://api.themoviedb.org/3/movie/now_playing?api_key=afce5775823482bce9ebe26ae2a18553"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
-    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-           if (error != nil) {
-               NSLog(@"%@", [error localizedDescription]);
-               NSString* errorName = [NSString stringWithFormat:@"%@", [error localizedDescription]];
-               [self handleAlert:errorName];
-           }
-           else {
-               
-               [self.activityIndicator stopAnimating];
-               
-               NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-               
-               // Get array of movies and store into property
-               NSArray* dataArray = dataDictionary[@"results"];
-               
-               self.movies = [Movie moviesWithDictionaries:dataArray];
-               self.filteredData = [Movie moviesWithDictionaries:dataArray];
-                              
-               // reload your table view data
-               [self.tableView reloadData];
-           }
+    MovieApiManager *manager = [MovieApiManager new];
+    [manager fetchNowPlaying:^(NSArray *movies, NSError *error) {
+        
+        if (error != nil) {
+            NSString* errorName = [NSString stringWithFormat:@"%@", [error localizedDescription]];
+            [self handleAlert:errorName];
+        }
+        else {
+            [self.activityIndicator stopAnimating];
+            
+            self.movies = movies;
+            self.filteredData = movies;
+            
+            [self.tableView reloadData];
+        }
         
         [self.refreshControl endRefreshing];
-            
-       }];
-    [task resume];
+    }];
 }
 
 - (void)handleAlert:(NSString *)errorName {
