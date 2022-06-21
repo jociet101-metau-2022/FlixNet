@@ -13,8 +13,8 @@
 
 @interface MovieViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
-@property (nonatomic, strong) NSMutableArray *movies;
-@property (nonatomic, strong) NSMutableArray *filteredData;
+@property (nonatomic, strong) NSArray *movies;
+@property (nonatomic, strong) NSArray *filteredData;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
@@ -70,15 +70,9 @@ NSArray *allMovies;
                
                // Get array of movies and store into property
                NSArray* dataArray = dataDictionary[@"results"];
-               self.movies = [[NSMutableArray alloc] init];
-               self.filteredData = [[NSMutableArray alloc] init];
                
-               for (NSDictionary* dictionary in dataArray) {
-                   Movie* movie = [[Movie alloc] initWithDictionary:dictionary];
-                   
-                   [self.movies addObject:movie];
-                   [self.filteredData addObject:movie];
-               }
+               self.movies = [Movie moviesWithDictionaries:dataArray];
+               self.filteredData = [Movie moviesWithDictionaries:dataArray];
                               
                // reload your table view data
                [self.tableView reloadData];
