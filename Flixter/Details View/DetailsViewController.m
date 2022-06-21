@@ -24,35 +24,17 @@
     [super viewDidLoad];
     
     // Set labels to corresponding text
-    self.titleLabel.text = self.incomingData[@"title"];
-    self.dateLabel.text = self.incomingData[@"release_date"];
-    self.synopsisLabel.text = self.incomingData[@"overview"];
+    self.titleLabel.text = self.incomingData.title;
+    self.dateLabel.text = self.incomingData.releaseDate;
+    self.synopsisLabel.text = self.incomingData.overview;
     
     // Configure the image paths for backdrop and poster
-    NSString *baseURL = @"https://image.tmdb.org/t/p/w500";
-    
-    NSString *posterTailURL = self.incomingData[@"poster_path"];
-    NSString *backdropTailURL = self.incomingData[@"backdrop_path"];
-
-    NSString *posterPath = [baseURL stringByAppendingString:posterTailURL];
-    NSString *backdropPath = [baseURL stringByAppendingString:backdropTailURL];
-
-    NSURL *posterURL = [NSURL URLWithString:posterPath];
-    NSURL *backdropURL = [NSURL URLWithString:backdropPath];
+    NSURL *posterURL = self.incomingData.posterUrl;
+    NSURL *backdropURL = self.incomingData.backdropUrl;
     
     // Assign the images to the image view object
     [self.posterImage setImageWithURL:posterURL];
     [self.backgroundImage setImageWithURL:backdropURL];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
